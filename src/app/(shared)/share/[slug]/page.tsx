@@ -2,6 +2,12 @@ import { getPageBySlugWithPageLinks } from "@/lib/api/pages/queries";
 import { HomeIcon, Link } from "lucide-react";
 import { notFound } from "next/navigation";
 
+interface PageLink {
+    id: string;
+    url: string;
+    title: string;
+}
+
 export default async function SharedPage({
     params,
 }: {
@@ -22,7 +28,7 @@ export default async function SharedPage({
           <p className="text-white">{page.description}</p>
         </header>
         <nav className="flex-1 w-full max-w-md flex flex-col gap-4">
-            {pageLinks.map((l) => (
+            {pageLinks.map((l: PageLink) => (
                 <Link key={l.id} href={l.url}>
                     <div className="flex items-center gap-4 p-4 rounded-lg border border-gray-300 bg-white hover:bg-gray-200 transition-all duration-300">
                         <HomeIcon className="text-gray-500 w-5 h-5" />
